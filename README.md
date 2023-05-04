@@ -1,1 +1,1 @@
-# skoltech_industrial_immersion
+# Skoltech Industrial Immersion
