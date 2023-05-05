@@ -21,15 +21,13 @@
 At each step, we compute a first-order approximation of the change in the log-likelihood
 that would be produced by swapping the jth trigger token xtrig with another token from vacabulary. Then we identify a candidate set of the top-k tokens estimated to cause the greatest increase.
 
-![image.png](attachment:c71b556e-e0c3-406c-b6d4-1a24075f08e5.png)
-
+![autoprompt](eq2.png)
 ,where $w_{in}$ is the input embedding of w, and the gradient is taken with respect to the input embedding of trigger token.
 
 For each candidate in this set, we then re-evaluate following equation on the updated prompt, and retain the prompt with the highest probability in the next step—this requires k forward passes of the model.
 
 
-![image.png](attachment:2ace4e45-0335-46f4-afdc-a30e2bb9a37d.png)
-
+![autoprompt](eq1.png)
 **Extention**: vocabulary set could be a set of relevant words, such as synonyms. However, we could extent the search domain with hyponymy-hypernymy relationships.
 
 https://en.wikipedia.org/wiki/Hyponymy_and_hypernymy
