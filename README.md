@@ -9,6 +9,9 @@
 
 **Extention:** use t5 model as a backbone to encode inital noise better.
 
+![t5](t5.png)
+https://medium.com/analytics-vidhya/t5-a-detailed-explanation-a0ac9bc53e51
+
 #### AutoPrompt 
 **IDEA:** take from set of words, e.g. the model or dataset vocabulary, k tokens and add them to prompt. Perform a gradient-based search to find that triggers.(Shin et al., 2020) 
 - CODE: https://github.com/ucinlp/autoprompt
@@ -22,12 +25,14 @@ At each step, we compute a first-order approximation of the change in the log-li
 that would be produced by swapping the jth trigger token xtrig with another token from vacabulary. Then we identify a candidate set of the top-k tokens estimated to cause the greatest increase.
 
 ![autoprompt](eq2.png)
+
 ,where $w_{in}$ is the input embedding of w, and the gradient is taken with respect to the input embedding of trigger token.
 
 For each candidate in this set, we then re-evaluate following equation on the updated prompt, and retain the prompt with the highest probability in the next step—this requires k forward passes of the model.
 
 
 ![autoprompt](eq1.png)
+
 **Extention**: vocabulary set could be a set of relevant words, such as synonyms. However, we could extent the search domain with hyponymy-hypernymy relationships.
 
 https://en.wikipedia.org/wiki/Hyponymy_and_hypernymy
@@ -49,5 +54,4 @@ Relation Network is used for few-shot learning.
 3. The relation module is fed with the concatenation of the embedding of a query image with each class prototype, and it outputs a relation score for each couple (simple neural net). Applying a Softmax to the relation scores, we get a prediction for classes.
 4. Add box prediciton head.
 
-![image.png](attachment:9b1b0a67-4120-4983-aba1-d8245b06375a.png)
-
+![relnet](relnet.png)
